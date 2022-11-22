@@ -5,7 +5,7 @@ cmake-build-minsizerel
 media
 .idea
 bin
-lib
+~lib
 *.log
 output
 Mitsuba 0.5.0
