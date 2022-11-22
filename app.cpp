@@ -9,8 +9,7 @@
 
 #include <iostream>
 
-App::App(const Launch_Settings &set, Platform *plt) : window_dim(plt ? plt->window_draw() : Vec2{1.0f}), camera(plt ? plt->window_draw() : Vec2{1.0f}), plt(plt),
-                                                      scene(Gui::n_Widget_IDs), gui(scene, plt ? plt->window_size() : Vec2{1.0f}), undo(scene, gui)
+App::App(const Launch_Settings &set, Platform *plt) : window_dim(plt ? plt->window_draw() : Vec2{1.0f}), camera(plt ? plt->window_draw() : Vec2{1.0f}), plt(plt), scene(Gui::n_Widget_IDs), gui(scene, plt ? plt->window_size() : Vec2{1.0f}), undo(scene, gui)
 {
     if (!set.headless)
         assert(plt);
@@ -75,7 +74,7 @@ auto App::quit() -> bool
 void App::event(SDL_Event e)
 {
     ImGuiIO &IO = ImGui::GetIO();
-    IO.DisplayFramebufferScale = plt->scale(Vec2{1.0f, 1.0f});
+    IO.DisplayFramebufferScale = {plt->scale(Vec2{1.0f, 1.0f}).x, plt->scale(Vec2{1.0f, 1.0f}).y};
 
     switch (e.type)
     {
@@ -158,8 +157,7 @@ void App::event(SDL_Event e)
 
                 Scene_ID id = Renderer::get().read_id(p);
 
-                if (cam_mode == Camera_Control::none &&
-                    ((plt->is_down(SDL_SCANCODE_LSHIFT) | plt->is_down(SDL_SCANCODE_RSHIFT) | (plt->is_down(SDL_SCANCODE_LALT) | plt->is_down(SDL_SCANCODE_RALT)))))
+                if (cam_mode == Camera_Control::none && ((plt->is_down(SDL_SCANCODE_LSHIFT) | plt->is_down(SDL_SCANCODE_RSHIFT) | (plt->is_down(SDL_SCANCODE_LALT) | plt->is_down(SDL_SCANCODE_RALT)))))
                 {
                     cam_mode = Camera_Control::orbit;
                 } else if (gui.select(scene, undo, id, camera.pos(), n, screen_to_world(p)))
@@ -221,9 +219,8 @@ void App::event(SDL_Event e)
                 }
             }
 
-            if ((e.button.button == SDL_BUTTON_LEFT && cam_mode == Camera_Control::orbit) ||
-                (e.button.button == SDL_BUTTON_MIDDLE && cam_mode == Camera_Control::orbit) ||
-                (e.button.button == SDL_BUTTON_RIGHT && cam_mode == Camera_Control::move) || (e.button.button == SDL_BUTTON_MIDDLE && cam_mode == Camera_Control::move))
+            if ((e.button.button == SDL_BUTTON_LEFT && cam_mode == Camera_Control::orbit) || (e.button.button == SDL_BUTTON_MIDDLE && cam_mode == Camera_Control::orbit) || (e.button.button == SDL_BUTTON_RIGHT && cam_mode == Camera_Control::move) ||
+                (e.button.button == SDL_BUTTON_MIDDLE && cam_mode == Camera_Control::move))
             {
                 cam_mode = Camera_Control::none;
             }

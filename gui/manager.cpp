@@ -852,7 +852,7 @@ void Manager::UIsidebar(Scene &scene, Undo &undo, float menu_height, Camera &cam
             ImGui::End();
             ImGui::SetNextWindowPos({0.0, window_dim.y}, ImGuiCond_Always, {0.0f, 1.0f});
             ImGui::SetNextWindowSize({window_dim.x, window_dim.y / 4.0f}, ImGuiCond_FirstUseEver);
-            ImGui::SetNextWindowSizeConstraints({window_dim.x, window_dim.y / 4.0f}, window_dim);
+            ImGui::SetNextWindowSizeConstraints({window_dim.x, window_dim.y / 4.0f}, {window_dim.x, window_dim.y});
             ImGui::Begin("Timeline", nullptr, flags);
             anim_height = ImGui::GetWindowHeight();
             animate.timeline(*this, undo, scene, selected, cam);
@@ -1215,7 +1215,7 @@ void Manager::UIsavefirst(Scene &scene, Undo &undo)
         return;
 
     Vec2 center = window_dim / 2.0f;
-    ImGui::SetNextWindowPos(Vec2{center.x, center.y}, 0, Vec2{0.5f, 0.5f});
+    ImGui::SetNextWindowPos({center.x, center.y}, 0, {0.5f, 0.5f});
     ImGui::Begin("Save Changes?", &save_first_shown, ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize);
     if (ImGui::Button("Yes"))
     {
@@ -1290,7 +1290,7 @@ void Manager::UIerror()
     if (!error_shown)
         return;
     Vec2 center = window_dim / 2.0f;
-    ImGui::SetNextWindowPos(Vec2{center.x, center.y}, 0, Vec2{0.5f, 0.5f});
+    ImGui::SetNextWindowPos({center.x, center.y}, 0, {0.5f, 0.5f});
     ImGui::Begin("Errors", &error_shown, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoResize);
     if (!error_msg.empty())
         ImGui::Text("%s", error_msg.c_str());
@@ -1378,7 +1378,7 @@ auto Manager::UImenu(Scene &scene, Undo &undo) -> float
 
 void Manager::UIbig_sim_button(Scene &scene, Undo &undo)
 {
-    ImGui::SetNextWindowPos(Vec2{ImGui::GetIO().DisplaySize.x * 0.8f, ImGui::GetIO().DisplaySize.y * 0.2f});
+    ImGui::SetNextWindowPos({ImGui::GetIO().DisplaySize.x * 0.8f, ImGui::GetIO().DisplaySize.y * 0.2f});
     ImGui::Begin("Sim", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
 
     static std::string Sim = "Simulate";
