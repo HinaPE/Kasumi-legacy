@@ -1,0 +1,21 @@
+[submodule "deps/assimp"]
+	path = deps/assimp
+	url = https://github.com/BFU-Graphics/Hina_assimp.git
+[submodule "deps/glad"]
+	path = deps/glad
+	url = https://github.com/BFU-Graphics/Hina_glad.git
+[submodule "deps/imgui"]
+	path = deps/imgui
+	url = https://github.com/BFU-Graphics/Hina_imgui.git
+[submodule "deps/sf_libs"]
+	path = deps/sf_libs
+	url = https://github.com/BFU-Graphics/Hina_sf_libs.git
+[submodule "deps/nfd"]
+	path = deps/nfd
+	url = https://github.com/BFU-Graphics/Hina_nfd.git
+[submodule "deps/libigl"]
+	path = deps/libigl
+	url = https://github.com/BFU-Graphics/libigl.git
+[submodule "deps/SDL"]
+	path = deps/SDL
+	url = https://github.com/libsdl-org/SDL.git
