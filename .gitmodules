@@ -13,9 +13,6 @@
 [submodule "deps/nfd"]
 	path = deps/nfd
 	url = https://github.com/BFU-Graphics/Hina_nfd.git
-[submodule "deps/libigl"]
-	path = deps/libigl
-	url = https://github.com/BFU-Graphics/libigl.git
 [submodule "deps/SDL"]
 	path = deps/SDL
 	url = https://github.com/libsdl-org/SDL.git
